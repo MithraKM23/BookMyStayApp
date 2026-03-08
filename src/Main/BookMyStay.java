@@ -1,16 +1,20 @@
 /*
  * @author Developer
- * @version 2
+ * @version 3
  */
 
 package Main;
 
 import java.util.Scanner;
 
+import Service.BookingService;
 import Service.InventoryService;
 import Service.SearchService;
 
 public class BookMyStay {
+	static BookingService booking=new BookingService();
+	
+	//Main method
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		InventoryService inventory=new InventoryService();
@@ -44,7 +48,9 @@ public class BookMyStay {
 			System.out.println("3. Update Room Price");
 			System.out.println("4. Check Room Availability");
 			System.out.println("5. Display Inventory");
-			System.out.println("6. exit");
+			System.out.println("6. View booking queue");
+			System.out.println("7. Process Next Booking");
+			System.out.println("8. exit");
 			
 			System.out.print("Enter your Choice: ");
 			choice=sc.nextInt();
@@ -83,6 +89,12 @@ public class BookMyStay {
 				inventory.displayInventory();
 				break;
 			case 6:
+				booking.viewqueue();
+				break;
+			case 7:
+				booking.processNextRequest();
+				break;
+			case 8:
 				System.out.println("Exiting System");
 				break;
 			default:
@@ -99,7 +111,8 @@ public class BookMyStay {
 			System.out.println("===Guest Menu===");
 			System.out.println("1. View Available Rooms");
 			System.out.println("2. Search Rooms");
-			System.out.println("3. Back");
+			System.out.println("3. Request Booking");
+			System.out.println("4. Back");
 			System.out.print("Enter your choice:");
 			choice=sc.nextInt();
 			switch(choice) {
@@ -112,11 +125,28 @@ public class BookMyStay {
 				search.SearchRoom(roomtype);
 				break;
 			case 3:
+				requestBooking();
+				break;
+			case 4:
 				System.out.println("Exiting...");
 			default:
 				break;
 			}
 			}while(choice!=3);
+	}
+	
+	//method for booking room
+	public static void requestBooking() {
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter Guest name:");
+		String name=sc.next();
+		System.out.println("Enter room type:");
+		String type=sc.next();
+		System.out.println("Enter nights:");
+		int nights=sc.nextInt();
+		booking.addBooking(name, type, nights);
+		
 	}
 
 }
