@@ -1,22 +1,25 @@
 /*
  * @author Developer
- * @version 4
+ * @version 5
  */
 
 package Main;
 
 import java.util.Scanner;
 
+import Service.AddOnServiceManager;
 import Service.BookingAllocation;
 import Service.BookingService;
 import Service.InventoryService;
 import Service.SearchService;
+import model.Services;
 
 public class BookMyStay {
 	static BookingService booking=new BookingService();
 	static InventoryService inventory=new InventoryService();
 	static SearchService search=new SearchService(inventory);
 	static BookingAllocation bookingallocation=new BookingAllocation(inventory);
+	static AddOnServiceManager addOnService=new AddOnServiceManager();
 	
 	//Main method
 	public static void main(String[] args) {
@@ -115,7 +118,9 @@ public class BookMyStay {
 			System.out.println("1. View Available Rooms");
 			System.out.println("2. Search Rooms");
 			System.out.println("3. Request Booking");
-			System.out.println("4. Back");
+			System.out.println("4. Add Services");
+			System.out.println("5. View Sevices");
+			System.out.println("6. Back");
 			System.out.print("Enter your choice:");
 			choice=sc.nextInt();
 			switch(choice) {
@@ -131,11 +136,33 @@ public class BookMyStay {
 				requestBooking();
 				break;
 			case 4:
+				System.out.println("Enter Reservation Id:");
+				String id=sc.next();
+				System.out.println("1. Breakfast");
+				System.out.println("2. Spa");
+				System.out.println("3. Pickup");
+				int serviceChoice=sc.nextInt();
+				if(serviceChoice==1) {
+					addOnService.addService(id, new Services("Breakfast",500));
+				}
+				else if(serviceChoice==2) {
+					addOnService.addService(id, new Services("Spa",2000));
+				}
+				else if(serviceChoice==3) {
+					addOnService.addService(id, new Services("Pickup",1000));
+				}
+				break;
+			case 5:
+				System.out.println("Enter Reservation Id:");
+				String id1=sc.next();
+				addOnService.viewServices(id1);
+				break;
+			case 6:
 				System.out.println("Exiting...");
 			default:
 				break;
 			}
-			}while(choice!=4);
+			}while(choice!=6);
 	}
 	
 	//method for booking room
