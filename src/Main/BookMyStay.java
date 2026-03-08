@@ -1,6 +1,6 @@
 /*
  * @author Developer
- * @version 5
+ * @version 6
  */
 
 package Main;
@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import Service.AddOnServiceManager;
 import Service.BookingAllocation;
+import Service.BookingHistory;
 import Service.BookingService;
 import Service.InventoryService;
 import Service.SearchService;
@@ -18,7 +19,8 @@ public class BookMyStay {
 	static BookingService booking=new BookingService();
 	static InventoryService inventory=new InventoryService();
 	static SearchService search=new SearchService(inventory);
-	static BookingAllocation bookingallocation=new BookingAllocation(inventory);
+	static BookingHistory history=new BookingHistory();
+	static BookingAllocation bookingallocation=new BookingAllocation(inventory,history);
 	static AddOnServiceManager addOnService=new AddOnServiceManager();
 	
 	//Main method
@@ -56,7 +58,9 @@ public class BookMyStay {
 			System.out.println("5. Display Inventory");
 			System.out.println("6. View booking queue");
 			System.out.println("7. Process Next Booking");
-			System.out.println("8. exit");
+			System.out.println("8. View Booking History");
+			System.out.println("9. Generate report");
+			System.out.println("10. exit");
 			
 			System.out.print("Enter your Choice: ");
 			choice=sc.nextInt();
@@ -101,13 +105,19 @@ public class BookMyStay {
 				booking.processNextRequest(bookingallocation);
 				break;
 			case 8:
+				history.viewAllReservations();
+				break;
+			case 9:
+				history.generaterereport();
+				break;
+			case 10:
 				System.out.println("Exiting System");
 				break;
 			default:
 				System.out.println("Invalid choice");
 				
 			}
-		}while(choice!=8);
+		}while(choice!=10);
 	}
 	
 	//Guest Operations

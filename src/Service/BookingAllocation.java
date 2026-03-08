@@ -1,6 +1,6 @@
 /*
  * @author Developer
- * @version 4
+ * @version 6
  */
 
 package Service;
@@ -16,10 +16,12 @@ public class BookingAllocation {
 	HashMap<String,Set<String>> roomAssignments = new HashMap<>();
 	
 	InventoryService inventory;
+	BookingHistory history;
 	
 	//Constructor
-	public BookingAllocation(InventoryService inventory) {
+	public BookingAllocation(InventoryService inventory,BookingHistory history) {
 		this.inventory=inventory;
+		this.history=history;
 	}
 	
 	//Confirming the reservation from the queue
@@ -37,6 +39,7 @@ public class BookingAllocation {
 		System.out.println("Booking Confirmed");
 		System.out.println("Guest: "+request.getGuestName());
 		System.out.println("Room Id: "+roomId);
+		history.addReservation(request);
 	}
 	
 	//Generating the room Id after reservation
