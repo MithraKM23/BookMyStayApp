@@ -1,6 +1,6 @@
 /*
  * @author Developer
- * @version 2
+ * @version 4
  */
 
 package Service;
@@ -56,6 +56,16 @@ public class InventoryService {
 			int count=roomCount.get(type);
 			double price=roomPrice.get(type);
 			System.out.println(type+" | Available: "+count+" | Price: "+price);
+		}
+	}
+	
+	//Decrement Room After Booking
+	public void decrementRoom(String type) {
+		if(roomCount.containsKey(type)) {
+			int count=roomCount.get(type);
+			if(count>0) {
+				roomCount.put(type, count-1);
+			}
 		}
 	}
 	

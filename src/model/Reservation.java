@@ -19,6 +19,18 @@ public class Reservation {
 		this.nights = nights;
 	 }
 	 
+	 public String getGuestName() {
+		return guestName;
+	}
+
+	 public String getRoomType() {
+		 return roomType;
+	 }
+
+	 public int getNights() {
+		 return nights;
+	 }
+
 	 //Returning the Guest Details in a readable format
 	 public String toString() {
 		 return "Guest: "+guestName+" | Room: "+roomType+" | Nights: "+nights;

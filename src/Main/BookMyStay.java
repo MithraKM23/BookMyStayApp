@@ -1,24 +1,27 @@
 /*
  * @author Developer
- * @version 3
+ * @version 4
  */
 
 package Main;
 
 import java.util.Scanner;
 
+import Service.BookingAllocation;
 import Service.BookingService;
 import Service.InventoryService;
 import Service.SearchService;
 
 public class BookMyStay {
 	static BookingService booking=new BookingService();
+	static InventoryService inventory=new InventoryService();
+	static SearchService search=new SearchService(inventory);
+	static BookingAllocation bookingallocation=new BookingAllocation(inventory);
 	
 	//Main method
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
-		InventoryService inventory=new InventoryService();
-		SearchService search=new SearchService(inventory);
+		
 		
 		//Getting input as manager or Guest
 		int role;
@@ -92,7 +95,7 @@ public class BookMyStay {
 				booking.viewqueue();
 				break;
 			case 7:
-				booking.processNextRequest();
+				booking.processNextRequest(bookingallocation);
 				break;
 			case 8:
 				System.out.println("Exiting System");
@@ -101,7 +104,7 @@ public class BookMyStay {
 				System.out.println("Invalid choice");
 				
 			}
-		}while(choice!=6);
+		}while(choice!=8);
 	}
 	
 	//Guest Operations
@@ -132,7 +135,7 @@ public class BookMyStay {
 			default:
 				break;
 			}
-			}while(choice!=3);
+			}while(choice!=4);
 	}
 	
 	//method for booking room

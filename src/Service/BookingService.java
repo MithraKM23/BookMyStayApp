@@ -1,6 +1,6 @@
 /*
  * @author Developer
- * @version 3
+ * @version 4
  */
 
 package Service;
@@ -12,6 +12,7 @@ import model.Reservation;
 
 public class BookingService {
 	Queue<Reservation> bookingqueue=new LinkedList<>();
+	
 	
 	//Adding the booking request to the queue
 	public void addBooking(String guestName,String roomtype,int nights) {
@@ -33,13 +34,12 @@ public class BookingService {
 	}
 	
 	//processing the next Request from the queue
-	public void processNextRequest() {
+	public void processNextRequest(BookingAllocation bookingallocation) {
 		if(bookingqueue.isEmpty()) {
 			System.out.println("No request to process.");
 			return;
 		}
 		Reservation r=bookingqueue.poll();
-		System.out.println("Processing booking for: ");
-		System.out.println(r);
+		bookingallocation.confirmReservation(r);
 	}
 }
