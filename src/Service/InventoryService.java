@@ -1,6 +1,6 @@
 /*
  * @author Developer
- * @version 1
+ * @version 2
  */
 
 package Service;
@@ -10,11 +10,13 @@ import java.util.HashMap;
 public class InventoryService {
 	HashMap<String,Integer> roomCount=new HashMap<>();
 	HashMap<String,Double> roomPrice=new HashMap<>();
+	HashMap<String,String> roomAmenities=new HashMap<>();
 	
 	//Add Rooms
-	public void addRoom(String roomType,int count,double price) {
+	public void addRoom(String roomType,int count,double price,String amenities) {
 		roomCount.put(roomType, count);
 		roomPrice.put(roomType, price);
+		roomAmenities.put(roomType,amenities);
 		System.out.println("Room added Successfully");
 	}
 	

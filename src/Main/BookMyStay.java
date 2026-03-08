@@ -1,6 +1,6 @@
 /*
  * @author Developer
- * @version 1
+ * @version 2
  */
 
 package Main;
@@ -8,14 +8,35 @@ package Main;
 import java.util.Scanner;
 
 import Service.InventoryService;
+import Service.SearchService;
 
 public class BookMyStay {
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		InventoryService inventory=new InventoryService();
-		int choice;
+		SearchService search=new SearchService(inventory);
 		
-		//Getting the choice as input from the Manager
+		//Getting input as manager or Guest
+		int role;
+		do {
+			
+			System.out.println("===bookMyStay System===");
+			System.out.println("1.Manager");
+			System.out.println("2. Guest");
+			System.out.println("3. Exit");
+			role=sc.nextInt();
+			if(role==1) {
+				managermenu(sc,inventory);
+			}
+			else if(role==2) {
+				guestmenu(sc,search);
+			}
+		}while(role!=3);
+}
+	
+	//Manager Operations
+	public static void managermenu(Scanner sc,InventoryService inventory) {
+		int choice;
 		do {
 			System.out.println("====BookMyStay Inventory Menu===");
 			System.out.println("1. Add Room");
@@ -33,9 +54,11 @@ public class BookMyStay {
 				String roomType=sc.next();
 				System.out.println("Enter room count:");
 				int count=sc.nextInt();
-				System.out.println("Enter room price");
+				System.out.println("Enter room price:");
 				double price=sc.nextDouble();
-				inventory.addRoom(roomType, count, price);
+				System.out.println("Enter Amenities:");
+				String amenity=sc.next();
+				inventory.addRoom(roomType, count, price,amenity);
 				break;
 			case 2:
 				System.out.println("Enter room type:");
@@ -68,4 +91,32 @@ public class BookMyStay {
 			}
 		}while(choice!=6);
 	}
+	
+	//Guest Operations
+	public static void guestmenu(Scanner sc,SearchService search) {
+		int choice;
+		do {
+			System.out.println("===Guest Menu===");
+			System.out.println("1. View Available Rooms");
+			System.out.println("2. Search Rooms");
+			System.out.println("3. Back");
+			System.out.print("Enter your choice:");
+			choice=sc.nextInt();
+			switch(choice) {
+			case 1 :
+				search.displayAvailableRooms();
+				break;
+			case 2:
+				System.out.println("Enter Room type: ");
+				String roomtype=sc.next();
+				search.SearchRoom(roomtype);
+				break;
+			case 3:
+				System.out.println("Exiting...");
+			default:
+				break;
+			}
+			}while(choice!=3);
+	}
+
 }
