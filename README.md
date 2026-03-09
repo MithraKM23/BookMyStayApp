@@ -1,11 +1,11 @@
-**#BookMyStayApp - Hotel Booking Management System**
+**# BookMyStayApp - Hotel Booking Management System #**
 
-**##Overview**
+**## Overview**
 
 BookMyStay is a console-based hoyel reservatoion system built using Core Java and Data Structures to simulate how real booking platforms manage inventory,reservations and guest services
 The project is designed as a learning-focused backend simulation demonstrating how different collection data structures can model real-world hotel booking operations.
 
-**###Features**
+**### Features**
 - Inventory Management
 - Room Availability Search
 - Booking request processing
