@@ -1,16 +1,16 @@
-**#Use Case 2 - Room Search & Availability Check**
+# Use Case 2 - Room Search & Availability Check
 
-**##Purpose**
+## Purpose
 
 Guests must be able to view room availability quickly without affecting the booking data.
 
-**##Data Structures**
+## Data Structures
 
 HashMap<String, Integer>
 
 HashMap<String, Double>
 
-**##Features**
+## Features
 - Display available room types
 - Show room prices
 - Validate room availability
