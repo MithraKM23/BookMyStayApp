@@ -1,16 +1,16 @@
-**#Use Case 4 - Reservation Confirmation & Room Allocation**
+# Use Case 4 - Reservation Confirmation & Room Allocation
 
-**##Purpose**
+## Purpose
 
 This feature confirms reservations and assigns unique room IDs.
 
-**##Data Structures**
+## Data Structures
 
 Set < String >  bookedRoomIds
 
 HashMap < String, Set< String > > roomAssignments
 
-**##Features**
+## Features
 
 - Assign unique room IDs
 - Prevent duplicate bookings
