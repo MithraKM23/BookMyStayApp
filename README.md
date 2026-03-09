@@ -1,16 +1,16 @@
-**#Use Case 3 - Booking Request Queue**
+# Use Case 3 - Booking Request Queue
 
-**##Purpose**
+## Purpose
 
 This feature ensures fair booking request processing during the high demand
 
-**##Data Structures**
+## Data Structures
 
 Queue <Reservation>
 
 LinkedList implementation
 
-**##Features**
+## Features
 - Fair request handling
 - Predictable booking order
 - Avoides request conflicts
