@@ -1,14 +1,14 @@
-**#Use Case 6 - Booking History & Reporting**
+# Use Case 6 - Booking History & Reporting
 
-**##Purpose**
+## Purpose
 
 Maintains a record of all confirmed reservations
 
-**##Data Structure**
+## Data Structure
 
 List < Reservation >
 
-**##Features**
+## Features
 - Store Confirmed Bookings
 - View booking history
 - Generate booking reports
